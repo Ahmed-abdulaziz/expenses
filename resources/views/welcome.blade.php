@@ -10,6 +10,14 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+  
+  {{-- @php
+    $currentMonth = \Carbon\Carbon::now()->startOfMonth();
+    $twoYearsFromNow = \Carbon\Carbon::now()->addYears(2)->startOfMonth();   
+  @endphp
+    @for ( $date = $currentMonth; $date <= $twoYearsFromNow; $date->addMonth())
+        {{ $date->format('F Y')  }} <br>
+    @endfor --}}
     <section class="vh-100">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
