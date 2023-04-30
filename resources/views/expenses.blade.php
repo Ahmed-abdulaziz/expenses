@@ -29,7 +29,7 @@
                         <div class="d-flex flex-row align-items-center">
                             <input type="text" required class="form-control form-control-lg" name="name" id="exampleFormControlInput1"
                               placeholder="الاسم">
-                              <input type="text" required  name="money" class="form-control form-control-lg" id="exampleFormControlInput1"
+                              <input type="number" step="any" required  name="money" class="form-control form-control-lg" id="exampleFormControlInput1"
                               placeholder="القيمه">
                               <select class="form-select form-control-lg w-75" name="type">
                                   <option value="2">
