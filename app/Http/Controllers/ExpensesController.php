@@ -97,6 +97,12 @@ class ExpensesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = expenses::find($id);
+        
+        if($data){
+            $data->delete();
+        }
+        session()->flash('success', 'تم الحذف بنجاح');
+        return redirect()->route('expenses.index');
     }
 }

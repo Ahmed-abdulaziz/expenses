@@ -96,9 +96,21 @@
                                 <i class="fas fa-hourglass-half me-2  "></i>
                               </a>
                               {{ $item->money }}
+                                <span>جنيه</span>
                             </p>
                           </div>
                         </li>
+
+                        <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                           
+                            <form action="{{ route('expenses.destroy', $item->id) }}" method="post" style="display: inline-block">
+                                {{ csrf_field() }}
+                                {{ method_field('delete') }}                                             
+                                <button type="submit" class="btn btn-outline-danger"> حذف</button>
+
+                            </form>
+                             
+                          </li>
                         
                     
                     </ul>
@@ -122,9 +134,11 @@
                                 <i class="fas fa-hourglass-half me-2 text-warning"></i>
                               </a>
                               {{  $total < 1 ? $total * -1 : $total }}
+                              <span>جنيه</span>
                             </p>
                           </div>
                         </li>
+                        
                     
                     </ul>
                 </div>
