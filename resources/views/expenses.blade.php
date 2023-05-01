@@ -26,23 +26,30 @@
                       <div class="card-body">
                     <form action="{{ route('expenses.store') }}" method="post">
                         @csrf
-                        <div class="d-flex flex-row align-items-center">
+                        <div class="row d-flex flex-row align-items-center">
+                          <div class="col-md-6 col-lg-3 my-1">
                             <input type="text" required class="form-control form-control-lg" name="name" id="exampleFormControlInput1"
-                              placeholder="الاسم">
-                              <input type="number" step="any" required  name="money" class="form-control form-control-lg" id="exampleFormControlInput1"
+                            placeholder="الاسم">
+                          </div>
+                          <div class="col-md-6 col-lg-3 my-1">
+                            <input type="number" step="any" required  name="money" class="form-control form-control-lg" id="exampleFormControlInput1"
                               placeholder="القيمه">
-                              <select class="form-select form-control-lg w-75" name="type">
-                                  <option value="2">
-                                      مصروف
+                          </div>
+                          <div class="col-md-6 col-lg-3 my-1">
+                            <select class="form-select form-control-lg " name="type">
+                              <option value="2">
+                                  مصروف
+                              </option>
+                                  <option value="1">
+                                          ايراد
                                   </option>
-                                      <option value="1">
-                                              ايراد
-                                      </option>
-                                      
-                              </select>
-                            <div>
-                              <button type="submit" class="btn btn-primary">اضافه</button>
-                            </div>
+                                  
+                          </select>
+                          </div>
+                          <div class="col-md-6 col-lg-3 my-1">
+                            <button type="submit" class="btn btn-primary">اضافه</button>
+                          </div>
+                            
                           </div>
                     </form>
                         
@@ -69,26 +76,26 @@
                      @php
                                  $total += $item->type == 2 ? $item->money * -1 :  $item->money;    
                         @endphp
-                      <ul class="list-group list-group-horizontal rounded-0">
+                      <ul class=" row  rounded-0">
                       
                         <li
-                          class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                          class=" col-md-6 col-lg-3 col-sm-6 list-group-item   border-0 bg-transparent">
                           <p class="lead fw-normal mb-0">{{ $item->title }}</p>
                         </li>
-                        <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                        <li class="col-md-6 col-lg-3 col-sm-6 list-group-item  border-0 bg-transparent">
                             <div
                               class="py-2 px-3 me-2 border border-warning rounded-3 d-flex align-items-center bg-light">
                               <p class="small mb-0">
                                 <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
                                   <i class="fas fa-hourglass-half me-2 text-warning"></i>
                                 </a>
-                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l j F Y H:i:s') }}
+                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('Y-m-d') }}
                                
                               </p>
                             </div>
                           </li>
 
-                        <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                        <li class="col-md-6 col-lg-3 col-sm-6 list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
                           <div
                             class="py-2 px-3 me-2 border {{ $item->type == 2 ? 'border-danger' : 'border-warning' }} rounded-3 d-flex align-items-center bg-light">
                             <p class="small mb-0">
@@ -101,7 +108,7 @@
                           </div>
                         </li>
 
-                        <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                        <li class="ccol-md-6 col-lg-3 col-sm-6 list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
                            
                             <form action="{{ route('expenses.destroy', $item->id) }}" method="post" style="display: inline-block">
                                 {{ csrf_field() }}
@@ -119,14 +126,14 @@
 
                   @endforeach
                    
-                    <ul class="list-group list-group-horizontal rounded-0">
+                    <ul class=" row list-group list-group-horizontal rounded-0">
                       
                         <li
-                          class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                          class="col-md-8 col-sm-8 list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
                           <p class="lead fw-normal mb-0">الاجمالى</p>
                         </li>
                        
-                        <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                        <li class="col-md-4 col-sm-4 list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
                           <div
                             class="py-2 px-3 me-2 border {{ $total < 1 ?  'border-danger' : 'border-warning '}} rounded-3 d-flex align-items-center bg-light">
                             <p class="small mb-0">
@@ -135,6 +142,8 @@
                               </a>
                               {{  $total < 1 ? $total * -1 : $total }}
                               <span>جنيه</span>
+                              <br>
+                              {{-- <span>{{ $total < 1 ?  'مصروف' : 'ايراد'}}</span> --}}
                             </p>
                           </div>
                         </li>
